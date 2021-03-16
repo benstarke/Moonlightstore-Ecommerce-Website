@@ -5,7 +5,7 @@ from .import views
 
 
 urlpatterns = [
-	#path('',HomeView.as_view(),name='home'),
+	#path('',HomeView.as_view(),name='hom10e'),
 	#path('product/<slug>',ProductDetail.as_view(),name='product'),
 	path('abouts/',views.abouts,name='abouts'),
 	path('product/<slug>/',views.product,name='product'),

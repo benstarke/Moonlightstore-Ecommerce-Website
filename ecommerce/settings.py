@@ -50,6 +50,8 @@ INSTALLED_APPS = [
 
     'cloudinary_storage',
     'cloudinary',
+
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -89,12 +91,8 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'moonstore',
-        'USER': 'postgres',
-        'PASSWORD': 'bb99GG00',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -151,10 +149,10 @@ MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
-
-AWS_ACCESS_KEY_ID = 'AKIAIBBGI3HYFGVI7GJQ'
-AWS_STORAGE_BUCKET_NAME = 'benstar-bucket'
-AWS_SECRET_ACCESS_KEY = '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'
+"""
+AWS_ACCESS_KEY_ID = 'AKIATFVR5X2Y6T4N3O6X'
+AWS_STORAGE_BUCKET_NAME = 'moonlightstore'
+AWS_SECRET_ACCESS_KEY = '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'
 
 
 AWS_UPLOAD_USERNAME = "BEN_user_jomusi"
@@ -172,29 +170,7 @@ DEFAULT_FILE_STORAGE = 'ecommerce.storage_backends.MediaStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-"""AWS_UPLOAD_BUCKET = "benstar-bucket"
-
-AWS_UPLOAD_USERNAME = "BEN_user_jomusi"
-
-AWS_UPLOAD_GROUP = "BEN_AwesomeGroup"
-
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-
-AWS_UPLOAD_REGION = 'us-west-2'
-
-AWS_UPLOAD_ACCESS_KEY_ID = "AKIAIBBGI3HYFGVI7GJQ"
-
-AWS_UPLOAD_SECRET_KEY = "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 "
-
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-MEDIA_URL = '//%s.s3.amazonaws.com/media/' % AWS_UPLOAD_BUCKET
-#AWS_S3_REGION_NAME = 'us-east-2'
-#AWS_S3_SIGNATURE_VERSION = 's3v4'  """
-
+"""
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'

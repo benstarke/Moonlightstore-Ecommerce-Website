@@ -11,43 +11,51 @@
 </div>
 {% endfor %}
 {% endif %}
-  <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Confirm!</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Hostel</label>
-        </div>
-        <div class="md-form mb-5">
-          <i class="fa fa-behance-square"></i>
-          <input type="email" id="orangeForm-email" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-email">TelPhone</label>
-        </div>
 
-        <div class="md-form mb-4">
-          <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-pass">Delivery</label>
-        </div>
+ 
 
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-deep-orange">Sign up</button>
-      </div>
-    </div>
+<div class="card container  justify-content-center">
+  <div class="card-body">
+    <h5 class="card-title text-primary">Hello {{request.user}},Make Order</h5>
+    <p class="card-text container">
+       <form  method="POST" class="container">
+         {% csrf_token %}
+          <div class="md-form-select">
+              <select class="form-select form-select-lg mb-3" name="hostel" aria-label=".form-select-lg example">
+                  <option selected>Your Residence</option>
+                  <option value="Everglades">Everglades</option>
+                  <option value="Runda IN">Runda IN</option>
+                  <option value="Runda Out">Runda Out</option>
+                  <option value="Victoria">Victorias</option>
+                  <option value="Kawanjiru">Kawanjiru</option>
+                  <option value="Sunrise">Sunrise</option>
+                  <option value="Marian">Marian</option>
+                  <option value="1 KM">1 KM</option>
+                  
+                  <option value="Others">Others</option>
+              </select>
+            </div>
+            
+             <div class="md-form-select">
+              <select class="form-select form-select-lg mb-3" name="delivered_at" aria-label=".form-select-lg example">
+                  <option selected>Delivery Time</option>
+                  <option value="Morning 8-10a.m">Morning 8-10a.m</option>
+                  <option value="Afternoon 12-2p.m">Afternoon 12-2p.m</option>
+                  <option value="Evening 5-8p.m">Evening 5-8p.m</option>
+                  <option value="Anytime">Anytime</option>
+              </select>
+            </div>
+          <div class="md-form">
+            <input type="number" name="phoneNumber" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2MD" placeholder="Enter your phone number"  required>
+             <label class="sr-only" for="inlineFormInputName2MD">Contact</label>
+          </div>
+          
+            <!-- Sign in button -->
+            <button class="btn btn-primary btn-rounded btn-block my-4 w-50 waves-light z-depth-0"  type="submit">Order Now</button>
+          </div>
+      </form>
+    </p>
   </div>
 </div>
-
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">{{request.user}},Confirm Your Order</a>
-</div>
+<br><br><br>
 {% endblock %}

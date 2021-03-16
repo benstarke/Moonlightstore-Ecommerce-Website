@@ -15,6 +15,7 @@ class ItemAdmin(admin.ModelAdmin):
 admin.site.unregister(Group)
 admin.site.site_header=('MoonLightStore Enterprise')
 admin.site.register(Item,ItemAdmin)
+#admin.site.register(delivery_order)
 admin.site.register(Order)
 admin.site.register(delivery)
 admin.site.register(contact)

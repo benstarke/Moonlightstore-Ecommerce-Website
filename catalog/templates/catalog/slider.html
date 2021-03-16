@@ -18,10 +18,10 @@
 			{% for object in slides %}
 		  <!--First slide-->
 		  <div class="carousel-item {% if forloop.first %}active{% endif %}">
-			<div class="view" style="background-image: url({{object.image.url}}); background-repeat: no-repeat; background-size: cover;">
+			<div class="view" style="background-image: url({{object.img.url}}); background-repeat: no-repeat; background-size: cover;">
 
 			  <!-- Mask & flexbox options-->
-			  <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+			  <div class="mask  d-flex justify-content-center align-items-center">
 
 				<!-- Content -->
 				{% if object in slides %}
