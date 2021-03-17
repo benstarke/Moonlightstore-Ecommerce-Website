@@ -42,11 +42,11 @@
         <div class="row">
           <div class="col-sm-6">
             <i class="fa fa-envelope"></i>
-            support@email.com
+            moonlightstore@email.com
           </div>
           <div class="col-sm-6">
             <i class="fa fa-phone-alt"></i>
-            +012-345-6789
+            +254792047134
           </div>
         </div>
       </div>
@@ -72,8 +72,8 @@
             id="navbarCollapse"
           >
             <div class="navbar-nav mr-auto">
-              <a href="index.html" class="nav-item nav-link active">Home</a>
-              <a href="product-list.html" class="nav-item nav-link">Products</a>
+              <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+              <a href="{% url 'product_list' %}" class="nav-item nav-link">Products</a>
               <a href="product-detail.html" class="nav-item nav-link"
                 >Product Detail</a
               >
@@ -379,10 +379,11 @@
           <h1>Featured Product</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
+          {% for item in items %}
           <div class="col-lg-3">
             <div class="product-item">
               <div class="product-title">
-                <a href="#">Product Name</a>
+                <a href="{{item.get_absolute_url}}">{{item.title}}</a>
                 <div class="ratting">
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
@@ -402,14 +403,16 @@
                 </div>
               </div>
               <div class="product-price">
-                <h3><span>$</span>99</h3>
+                <h3><span>Sh.</span>{{ item.price }}</h3>
                 <a class="btn" href=""
                   ><i class="fa fa-shopping-cart"></i>Buy Now</a
                 >
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
+          {% endfor %}
+
+          <!-- <div class="col-lg-3">
             <div class="product-item">
               <div class="product-title">
                 <a href="#">Product Name</a>
@@ -528,7 +531,8 @@
                 >
               </div>
             </div>
-          </div>
+          </div> -->
+
         </div>
       </div>
     </div>
@@ -798,10 +802,10 @@
               <h2>Get in Touch</h2>
               <div class="contact-info">
                 <p>
-                  <i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA
+                  <i class="fa fa-map-marker"></i>Karatina, NY 60600, Kenya
                 </p>
-                <p><i class="fa fa-envelope"></i>email@example.com</p>
-                <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                <p><i class="fa fa-envelope"></i> moonlightstore@gmail.com</p>
+                <p><i class="fa fa-phone"></i>+254 792047134</p>
               </div>
             </div>
           </div>
@@ -870,8 +874,8 @@
         <div class="row">
           <div class="col-md-6 copyright">
             <p>
-              Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>.
-              All Rights Reserved
+              © 2020 Copyright: &copy; <a href="https://htmlcodex.com">Teamtechkenya</a>.
+               MoonLightStore
             </p>
           </div>
 

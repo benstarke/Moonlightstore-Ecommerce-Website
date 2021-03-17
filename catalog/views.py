@@ -30,6 +30,21 @@ def home(request):
 	context = {'slides':slides,'items':items,}
 	return render(request,'catalog/home.html',context)
 
+def product_list(request):
+	slides = slider.objects.all().order_by('id')[:7]
+	items_list = Item.objects.all()
+	page = request.GET.get('page', 1)
+	paginator = Paginator(items_list, 9)
+	try:
+		items = paginator.page(page)
+	except PageNotAnInteger:
+		items = paginator.page(1)
+	except EmptyPage:
+		items = paginator.page(paginator.num_pages)
+
+	context = {'slides':slides,'items':items,}
+	return render(request,'catalog/product-list.html',context)
+
 def abouts(request):
 	objects = about.objects.all()
 	abt = about1.objects.all()
