@@ -216,11 +216,12 @@
                   </div>
                 </div>
               </div>
-              {% comment %} Products {% endcomment %} {% for item in items %}
+              {% comment %} Products {% endcomment %}
+               {% for item in items %}
               <div class="col-md-4">
                 <div class="product-item">
                   <div class="product-title">
-                    <a href="{{item.get_absolute_url}}">{{item.title}}</a>
+                    <a href="{% url 'product' item.slug %}">{{item.title}}</a>
                     <div class="ratting">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -230,7 +231,7 @@
                     </div>
                   </div>
                   <div class="product-image">
-                    <a href="product-detail.html">
+                    <a href="{% url 'product' item.slug %}">
                       <img
                         src="{% static 'img/product-1.jpg'%}"
                         alt="Product Image"
@@ -239,7 +240,7 @@
                     <div class="product-action">
                       <a href="#"><i class="fa fa-cart-plus"></i></a>
                       <a href="#"><i class="fa fa-heart"></i></a>
-                      <a href="#"><i class="fa fa-search"></i></a>
+                      <a href="{% url 'product' item.slug %}"><i class="fa fa-search"></i></a>
                     </div>
                   </div>
                   <div class="product-price">
@@ -343,9 +344,10 @@
 
             <div class="sidebar-widget widget-slider">
               <div class="sidebar-slider normal-slider">
+                {% for item in items %}
                 <div class="product-item">
                   <div class="product-title">
-                    <a href="#">Product Name</a>
+                    <a href="#">{{item.title}}</a>
                     <div class="ratting">
                       <i class="fa fa-star"></i>
                       <i class="fa fa-star"></i>
@@ -356,7 +358,7 @@
                   </div>
                   <div class="product-image">
                     <a href="product-detail.html">
-                      <img src="img/product-10.jpg" alt="Product Image" />
+                      <img src="{% static 'img/product-10.jpg' %}" alt="Product Image" />
                     </a>
                     <div class="product-action">
                       <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -371,63 +373,9 @@
                     >
                   </div>
                 </div>
-                <div class="product-item">
-                  <div class="product-title">
-                    <a href="#">Product Name</a>
-                    <div class="ratting">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="product-image">
-                    <a href="product-detail.html">
-                      <img src="img/product-9.jpg" alt="Product Image" />
-                    </a>
-                    <div class="product-action">
-                      <a href="#"><i class="fa fa-cart-plus"></i></a>
-                      <a href="#"><i class="fa fa-heart"></i></a>
-                      <a href="#"><i class="fa fa-search"></i></a>
-                    </div>
-                  </div>
-                  <div class="product-price">
-                    <h3><span>$</span>99</h3>
-                    <a class="btn" href=""
-                      ><i class="fa fa-shopping-cart"></i>Buy Now</a
-                    >
-                  </div>
-                </div>
-                <div class="product-item">
-                  <div class="product-title">
-                    <a href="#">Product Name</a>
-                    <div class="ratting">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <div class="product-image">
-                    <a href="product-detail.html">
-                      <img src="img/product-8.jpg" alt="Product Image" />
-                    </a>
-                    <div class="product-action">
-                      <a href="#"><i class="fa fa-cart-plus"></i></a>
-                      <a href="#"><i class="fa fa-heart"></i></a>
-                      <a href="#"><i class="fa fa-search"></i></a>
-                    </div>
-                  </div>
-                  <div class="product-price">
-                    <h3><span>$</span>99</h3>
-                    <a class="btn" href=""
-                      ><i class="fa fa-shopping-cart"></i>Buy Now</a
-                    >
-                  </div>
-                </div>
+                {% endfor %}
               </div>
+              
             </div>
 
             <div class="sidebar-widget brands">
@@ -468,12 +416,12 @@
     <div class="brand">
       <div class="container-fluid">
         <div class="brand-slider">
-          <div class="brand-item"><img src="img/brand-1.png" alt="" /></div>
-          <div class="brand-item"><img src="img/brand-2.png" alt="" /></div>
-          <div class="brand-item"><img src="img/brand-3.png" alt="" /></div>
-          <div class="brand-item"><img src="img/brand-4.png" alt="" /></div>
-          <div class="brand-item"><img src="img/brand-5.png" alt="" /></div>
-          <div class="brand-item"><img src="img/brand-6.png" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-1.png' %}" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-2.png' %}" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-3.png' %}" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-4.png' %}" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-5.png' %}" alt="" /></div>
+          <div class="brand-item"><img src="{% static 'img/brand-6.png' %}" alt="" /></div>
         </div>
       </div>
     </div>
