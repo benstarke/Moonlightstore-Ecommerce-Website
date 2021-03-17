@@ -1,0 +1,138 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<br>
+{% include 'catalog/slider.html' with slides=slides %}
+
+
+
+
+
+
+ <!-- ======= Products Section ======= -->
+ <section id="product" class="portfolio">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h3 class="section-title">Projects</h3>
+      <p class="section-description">These are some of the projects we have done for our clients.</p>
+    </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">All</li>
+          <li data-filter=".filter-app">moonlightstore</li>
+          <li data-filter=".filter-app1">agridoctor</li>
+          <li data-filter=".filter-app2">vorufaconstruction</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+      {% if items_list %}
+      {% for pro in items_list.category.Vegetables %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <img src="{{pro.image.url}}" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>{{pro.price}}</h4>
+          <p>{{pro.title}}</p>
+          <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+          <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+        </div>
+      </div>
+      {% endfor %}
+        {% endif %}
+
+        {% if items_list %}
+      {% for pro in items_list %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app1">
+        <img src="{{pro.image.url}}" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>{{pro.price}}</h4>
+          <p>{{pro.title}}</p>
+          <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+          <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+        </div>
+      </div>
+      {% endfor %}
+        {% endif %}
+
+        {% if items_list %}
+      {% for pro in items_list %}
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app2">
+        <img src="{{pro.image.url}}" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>{{pro.price}}</h4>
+          <p>{{pro.title}}</p>
+          <a href="{{pro.image.url}}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+          <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+        </div>
+      </div>
+      {% endfor %}
+        {% endif %}
+   </div>
+  </div>
+</section><!-- End Portfolio Section -->
+
+
+
+
+
+
+
+<section class="text-center mb-4 container">
+  <!--Grid row-->
+  <div class="row wow fadeIn">
+    <!--Grid column-->{% for item in items %}
+    <div class="col-lg-3 col-md-6 mb-4">
+      <!--Card-->
+      <div class="card">
+        <!--Card image-->
+        <div class="view overlay">
+          <img src="{{ item.img.url }}" class="card-img-top"
+            alt="">
+          <a href="{% url 'product' item.slug %}" >
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <!--Card image-->
+        <!--Card content-->
+        <div class="card-body text-center">
+          <!--Category & Title-->
+          <a href="{% url 'product' item.slug %}" class="grey-text">
+            <h5>{{item.get_category_display}}</h5>
+          </a>
+          <h5>
+            <strong>
+              <a href="{% url 'product' item.slug %}" class="dark-grey-text">{{item.title}}
+                <span class="badge badge-pill danger-color">NEW</span>
+              </a>
+            </strong>
+          </h5>
+          <h4 class="font-weight-bold blue-text">
+            {% if item.discount_price %}
+            <del>Ksh.{{item.price}}</del>
+                <strong>Ksh.{{item.discount_price}}</strong>
+            {% else %}
+            <strong>Ksh.{{item.price}}</strong>
+            {% endif %}
+          </h4>
+        </div>
+        <!--Card content-->
+      </div>
+      <!--Card-->
+
+    </div>
+    {% endfor %}
+    <!--Grid column-->
+  </div>
+</section>
+
+
+ <!--Pagination-->
+ {% if items.paginator.num_pages > 1 %}
+ {% include 'registration/pagination_green.html' with items=items %}
+{% endif %}
+ <!--Pagination   -->
+{% endblock %}
