@@ -1,0 +1,76 @@
+<form class="col s12" method="post">
+  {% csrf_token %}
+
+  <legend class="green-text"><h3>Join Today</h3></legend>
+
+  <div class="row">
+    <div class="input-field col s6">
+      <input
+        placeholder="placeholder"
+        id="first_name"
+        name="first_name"
+        type="text"
+        class="validate"
+      />
+      <label for="first_name">First Name</label>
+    </div>
+    <div class="input-field col s6">
+      <input
+        placeholder="placeholder"
+        id="last_name"
+        name="last_name"
+        type="text"
+        class="validate"
+      />
+      <label for="last_name">Last Name</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          placeholder="placeholder"
+          id="email"
+          name="email"
+          type="text"
+          class="validate"
+        />
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          placeholder="placeholder"
+          id="username"
+          name="username"
+          type="text"
+          class="validate"
+        />
+        <label for="username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input
+          placeholder="Placeholder"
+          id="first_name"
+          name="password1"
+          type="password"
+          class="validate"
+        />
+        <label for="first_name">Pasword</label>
+      </div>
+      <div class="input-field col s6">
+        <input
+          placeholder="placeholder"
+          id="first_name"
+          name="password2"
+          type="password"
+          class="validate"
+        />
+        <label for="first_name">Confirm Pasword</label>
+      </div>
+    </div>
+    <div class="row"></div>
+    <button type="Submit">Sign Up</button>
+  </div>
+</form>

@@ -47,10 +47,10 @@ INSTALLED_APPS = [
      'storages',
     'catalog',
     'crispy_forms',
-
+      
     'cloudinary_storage',
     'cloudinary',
-
+     'User',
     'imagekit',
 ]
 
