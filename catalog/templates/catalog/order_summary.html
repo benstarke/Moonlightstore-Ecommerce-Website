@@ -241,9 +241,11 @@
                     <div class="cart-content">
                       <h1>Cart Summary</h1>
 
-                      <p>Sub Total<span>$99</span></p>
-                      <p>Shipping Cost<span>$1</span></p>
-                      <h2>Grand Total<span>$100</span></h2>
+                      <p>Sub Total<span>Sh.{{order.get_total}}</span></p>
+                      <p>Shipping Cost<span>$20</span></p>
+                      <h2>
+                        Grand Total<span>${{order.get_final_total}}</span>
+                      </h2>
                     </div>
                     <div class="cart-btn">
                       <button>Update Cart</button>

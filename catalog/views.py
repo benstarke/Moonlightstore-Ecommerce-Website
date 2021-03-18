@@ -193,7 +193,7 @@ def signup(request):
             return redirect('signup')
 
     else:
-        return render(request,'registration/signup.html',{'title':'signup'})
+        return render(request,'registration/login.html',{'title':'signup'})
 
 
 
