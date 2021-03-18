@@ -81,7 +81,9 @@
               <a href="cart.html" class="nav-item nav-link">Cart</a>
               <a href="checkout.html" class="nav-item nav-link">Checkout</a>
               {% if user.is_authenticated %}
-              <a href="{% url 'dashbord' %}" class="nav-item nav-link">My Account</a>
+              <a href="{% url 'dashbord' %}" class="nav-item nav-link"
+                >My Account</a
+              >
               {% endif %}
               <div class="nav-item dropdown">
                 <a
@@ -95,7 +97,9 @@
                   <a href="login.html" class="dropdown-item"
                     >Login & Register</a
                   >
-                  <a href="contact.html" class="dropdown-item">Contact Us</a>
+                  <a href="{% url 'contact' %}" class="dropdown-item"
+                    >Contact Us</a
+                  >
                 </div>
               </div>
             </div>
@@ -109,8 +113,8 @@
                 >
                 <div class="dropdown-menu">
                   {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                {% else %}
+                  <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                  {% else %}
                   <a href="{% url 'login' %}" class="dropdown-item">Login</a>
                   <a href="{% url 'login' %}" class="dropdown-item">Register</a>
                   {% endif %}
@@ -222,8 +226,7 @@
                   </div>
                 </div>
               </div>
-              {% comment %} Products {% endcomment %}
-               {% for item in items %}
+              {% comment %} Products {% endcomment %} {% for item in items %}
               <div class="col-md-4">
                 <div class="product-item">
                   <div class="product-title">
@@ -246,7 +249,9 @@
                     <div class="product-action">
                       <a href="#"><i class="fa fa-cart-plus"></i></a>
                       <a href="#"><i class="fa fa-heart"></i></a>
-                      <a href="{% url 'product' item.slug %}"><i class="fa fa-search"></i></a>
+                      <a href="{% url 'product' item.slug %}"
+                        ><i class="fa fa-search"></i
+                      ></a>
                     </div>
                   </div>
                   <div class="product-price">
@@ -263,8 +268,8 @@
             <!-- Pagination Start -->
             <div class="col-md-12">
               <nav aria-label="Page navigation example">
-                {% if items.paginator.num_pages > 1 %}
-                {% if items.has_other_pages %}
+                {% if items.paginator.num_pages > 1 %} {% if
+                items.has_other_pages %}
                 <ul class="pagination justify-content-center">
                   {% if items.has_previous %}
                   <li class="page-item disabled">
@@ -279,9 +284,8 @@
                   <li class="page-item">
                     <a class="disabled page-link">Previous</a>
                   </li>
-                  {% endif %} 
-                  {% for i in items.paginator.page_range %}
-                   {% if items.number == i %}
+                  {% endif %} {% for i in items.paginator.page_range %} {% if
+                  items.number == i %}
                   <li class="page-item active">
                     <a class="page-link" href="#">{{ i }} </a>
                   </li>
@@ -289,9 +293,7 @@
                   <li class="page-item">
                     <a class="page-link" href="?page={{ i }}">{{ i }}</a>
                   </li>
-                  {% endif %} 
-                  {% endfor %} 
-                  {% if items.has_next %}
+                  {% endif %} {% endfor %} {% if items.has_next %}
                   <li class="page-item">
                     <a
                       class="page-link"
@@ -305,8 +307,7 @@
                   </li>
                   {% endif %}
                 </ul>
-                {% endif %}
-                {% endif %}
+                {% endif %} {% endif %}
               </nav>
             </div>
             <!-- Pagination Start -->
@@ -364,7 +365,10 @@
                   </div>
                   <div class="product-image">
                     <a href="product-detail.html">
-                      <img src="{% static 'img/product-10.jpg' %}" alt="Product Image" />
+                      <img
+                        src="{% static 'img/product-10.jpg' %}"
+                        alt="Product Image"
+                      />
                     </a>
                     <div class="product-action">
                       <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -381,7 +385,6 @@
                 </div>
                 {% endfor %}
               </div>
-              
             </div>
 
             <div class="sidebar-widget brands">
@@ -422,12 +425,24 @@
     <div class="brand">
       <div class="container-fluid">
         <div class="brand-slider">
-          <div class="brand-item"><img src="{% static 'img/brand-1.png' %}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-2.png' %}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-3.png' %}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-4.png' %}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-5.png' %}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-6.png' %}" alt="" /></div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-1.png' %}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-2.png' %}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-3.png' %}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-4.png' %}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-5.png' %}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-6.png' %}" alt="" />
+          </div>
         </div>
       </div>
     </div>

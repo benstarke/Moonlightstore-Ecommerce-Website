@@ -88,7 +88,9 @@
                   <a href="login.html" class="dropdown-item active"
                     >Login & Register</a
                   >
-                  <a href="contact.html" class="dropdown-item">Contact Us</a>
+                  <a href="{% url 'contact' %}" class="dropdown-item"
+                    >Contact Us</a
+                  >
                 </div>
               </div>
             </div>
@@ -139,7 +141,7 @@
                 <i class="fa fa-heart"></i>
                 <span>(0)</span>
               </a>
-              <a href="cart.html" class="btn cart">
+              <a href="{% url 'order_summary' %}" class="btn cart">
                 <i class="fa fa-shopping-cart"></i>
                 <span>({{ request.user|cart_item_count }})</span>
               </a>

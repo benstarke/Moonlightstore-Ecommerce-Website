@@ -1,5 +1,4 @@
-{% load static %}
-{% load cart_template_tags %}
+{% load static %} {% load cart_template_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,10 +28,8 @@
     />
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet" /> 
+    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet" />
     <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet" />
-
-    
   </head>
 
   <body>
@@ -72,15 +69,21 @@
             id="navbarCollapse"
           >
             <div class="navbar-nav mr-auto">
-              <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
-              <a href="{% url 'product_list' %}" class="nav-item nav-link">Products</a>
+              <a href="{% url 'home' %}" class="nav-item nav-link active"
+                >Home</a
+              >
+              <a href="{% url 'product_list' %}" class="nav-item nav-link"
+                >Products</a
+              >
               <a href="product-detail.html" class="nav-item nav-link"
                 >Product Detail</a
               >
               <a href="cart.html" class="nav-item nav-link">Cart</a>
               <a href="checkout.html" class="nav-item nav-link">Checkout</a>
               {% if user.is_authenticated %}
-              <a href="{% url 'dashbord' %}" class="nav-item nav-link">My Account</a>
+              <a href="{% url 'dashbord' %}" class="nav-item nav-link"
+                >My Account</a
+              >
               {% endif %}
               <div class="nav-item dropdown">
                 <a
@@ -94,7 +97,9 @@
                   <a href="login.html" class="dropdown-item"
                     >Login & Register</a
                   >
-                  <a href="contact.html" class="dropdown-item">Contact Us</a>
+                  <a href="{% url 'contact' %}" class="dropdown-item"
+                    >Contact Us</a
+                  >
                 </div>
               </div>
             </div>
@@ -108,8 +113,8 @@
                 >
                 <div class="dropdown-menu">
                   {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                {% else %}
+                  <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                  {% else %}
                   <a href="{% url 'login' %}" class="dropdown-item">Login</a>
                   <a href="{% url 'login' %}" class="dropdown-item">Register</a>
                   {% endif %}
@@ -209,7 +214,11 @@
           <div class="col-md-6">
             <div class="header-slider normal-slider">
               <div class="header-slider-item">
-                <img src="{% static 'img/slider-1.jpg'%}" alt="Slider Image" %}% />
+                <img
+                  src="{% static 'img/slider-1.jpg'%}"
+                  alt="Slider Image"
+                  %}%
+                />
                 <div class="header-slider-caption">
                   <p>Some text goes here that describes the image</p>
                   <a class="btn" href=""
@@ -262,12 +271,24 @@
     <div class="brand">
       <div class="container-fluid">
         <div class="brand-slider">
-          <div class="brand-item"><img src="{% static 'img/brand-1.png'%}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-2.png'%}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-3.png'%}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-4.png'%}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-5.png'%}" alt="" /></div>
-          <div class="brand-item"><img src="{% static 'img/brand-6.png'%}" alt="" /></div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-1.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-2.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-3.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-4.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-5.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-6.png'%}" alt="" />
+          </div>
         </div>
       </div>
     </div>
@@ -400,7 +421,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-1.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-1.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -538,7 +562,6 @@
               </div>
             </div>
           </div> -->
-
         </div>
       </div>
     </div>
@@ -583,7 +606,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-6.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-6.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -613,7 +639,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-7.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-7.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -643,7 +672,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-8.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-8.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -673,7 +705,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-9.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-9.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -703,7 +738,10 @@
               </div>
               <div class="product-image">
                 <a href="product-detail.html">
-                  <img src="{% static 'img/product-10.jpg'%}" alt="Product Image" />
+                  <img
+                    src="{% static 'img/product-10.jpg'%}"
+                    alt="Product Image"
+                  />
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -807,9 +845,7 @@
             <div class="footer-widget">
               <h2>Get in Touch</h2>
               <div class="contact-info">
-                <p>
-                  <i class="fa fa-map-marker"></i>Karatina, NY 60600, Kenya
-                </p>
+                <p><i class="fa fa-map-marker"></i>Karatina, NY 60600, Kenya</p>
                 <p><i class="fa fa-envelope"></i> moonlightstore@gmail.com</p>
                 <p><i class="fa fa-phone"></i>+254 792047134</p>
               </div>
@@ -858,14 +894,17 @@
           <div class="col-md-6">
             <div class="payment-method">
               <h2>We Accept:</h2>
-              <img src="{% static 'img/payment-method.png'%}" alt="Payment Method" />
+              <img
+                src="{% static 'img/payment-method.png'%}"
+                alt="Payment Method"
+              />
             </div>
           </div>
           <div class="col-md-6">
             <div class="payment-security">
               <h2>Secured By:</h2>
               <img src="{% static 'img/godaddy.svg'%}" alt="Payment Security" />
-                <img src="{% static 'img/norton.svg'%}" alt="Payment Security" />
+              <img src="{% static 'img/norton.svg'%}" alt="Payment Security" />
               <img src="{% static 'img/ssl.svg'%}" alt="Payment Security" />
             </div>
           </div>
@@ -880,8 +919,8 @@
         <div class="row">
           <div class="col-md-6 copyright">
             <p>
-              © 2020 Copyright: &copy; <a href="https://htmlcodex.com">Teamtechkenya</a>.
-               MoonLightStore
+              © 2020 Copyright: &copy;
+              <a href="https://htmlcodex.com">Teamtechkenya</a>. MoonLightStore
             </p>
           </div>
 
