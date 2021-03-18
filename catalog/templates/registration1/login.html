@@ -1,0 +1,36 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+
+<!-- Content --><br/><br/>
+        <center>
+        <form class="container" method="POST">
+        {% csrf_token %}
+         
+          <div class="md-form">
+            <input type="text" name="username" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputName2MD" placeholder="Enter your userame"  required>
+             <label class="sr-only" for="inlineFormInputName2MD">Username</label>
+          </div>
+          
+          <div class="md-form">
+            <input type="password" name="password" class="form-control mb-2 mr-sm-2 w-50" id="inlineFormInputName2MD" placeholder="Enter your password"  required>
+             <label class="sr-only" for="inlineFormInputName2MD">Password</label>
+          </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-primary btn-rounded btn-block my-4 w-50 waves-light z-depth-0" type="submit">Sign
+              in</button>
+          </div>
+      </form>
+      </center>
+      <div class="border-top pt-3 text-center">
+      <span class="text-muted"> Don't have an Account?
+          <a href="{% url 'signup' %}"> <span class="badge badge-primary">signUp</span></a>
+      </span>
+  </div>
+{% endblock %}

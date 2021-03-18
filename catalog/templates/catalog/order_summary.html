@@ -49,6 +49,7 @@
       </div>
     </div>
     <!-- Top bar End -->
+
     <!-- Nav Bar Start -->
     <div class="nav">
       <div class="container-fluid">
@@ -73,19 +74,19 @@
               <a href="product-detail.html" class="nav-item nav-link"
                 >Product Detail</a
               >
-              <a href="cart.html" class="nav-item nav-link">Cart</a>
+              <a href="cart.html" class="nav-item nav-link active">Cart</a>
               <a href="checkout.html" class="nav-item nav-link">Checkout</a>
               <a href="my-account.html" class="nav-item nav-link">My Account</a>
               <div class="nav-item dropdown">
                 <a
                   href="#"
-                  class="nav-link dropdown-toggle active"
+                  class="nav-link dropdown-toggle"
                   data-toggle="dropdown"
                   >More Pages</a
                 >
                 <div class="dropdown-menu">
                   <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                  <a href="login.html" class="dropdown-item active"
+                  <a href="login.html" class="dropdown-item"
                     >Login & Register</a
                   >
                   <a href="contact.html" class="dropdown-item">Contact Us</a>
@@ -119,7 +120,7 @@
           <div class="col-md-3">
             <div class="logo">
               <a href="index.html">
-                <img src="img/logo.png" alt="Logo" />
+                <img src="{% static 'img/logo.png'%}" alt="Logo" />
               </a>
             </div>
           </div>
@@ -135,9 +136,9 @@
                 <i class="fa fa-heart"></i>
                 <span>(0)</span>
               </a>
-              <a href="cart.html" class="btn cart">
+              <a href="{% url 'order_summary' %}" class="btn cart">
                 <i class="fa fa-shopping-cart"></i>
-                <span>(0)</span>
+                <span>({{ request.user|cart_item_count }})</span>
               </a>
             </div>
           </div>
@@ -152,106 +153,103 @@
         <ul class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Products</a></li>
-          <li class="breadcrumb-item active">Login & Register</li>
+          <li class="breadcrumb-item active">Cart</li>
         </ul>
       </div>
     </div>
     <!-- Breadcrumb End -->
 
-    <!-- Login Start -->
-    <div class="login">
+    <!-- Cart Start -->
+    <div class="cart-page">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
-            <div class="register-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>First Name</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="First Name"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Last Name"</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Last Name"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>E-mail</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="E-mail"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Mobile No</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Mobile No"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Password</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Password"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Retype Password</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Password"
-                  />
-                </div>
-                <div class="col-md-12">
-                  <button class="btn">Submit</button>
-                </div>
+          <div class="col-lg-8">
+            <div class="cart-page-inner">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Total</th>
+                      <th>Remove</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="align-middle">
+                    {% for order_item in order.items.all %}
+                    <tr>
+                      <td>
+                        <div class="img">
+                          <a href="#"
+                            ><img
+                              src="{{order_item.item.image.url}}"
+                              alt="Image"
+                          /></a>
+                          <p>{{order_item.item.title}}</p>
+                        </div>
+                      </td>
+
+                      {% if order_item.item.discount_price %}
+                      <td>{{order_item.item.discount_price}}</td>
+                      {% else %}
+                      <td>{{order_item.item.price}}</td>
+                      {% endif %}
+
+                      <td>
+                        <div class="qty">
+                          <button class="btn-minus">
+                            <a
+                              href="{{order_item.item.get_remove_from_cart_url}}"
+                            >
+                              <i class="fa fa-minus"></i
+                            ></a>
+                          </button>
+                          <input type="text" value="{{order_item.quantity}}" />
+                          <button class="btn-plus">
+                            <a href="{{order_item.item.get_add_to_cart_url}}">
+                              <i class="fa fa-plus"></i>
+                            </a>
+                          </button>
+                        </div>
+                      </td>
+
+                      <td>{{order_item.get_final_price}}</td>
+
+                      <td>
+                        <button><i class="fa fa-trash"></i></button>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="login-form">
+          <div class="col-lg-4">
+            <div class="cart-page-inner">
               <div class="row">
-                <div class="col-md-6">
-                  <label>E-mail / Username</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="E-mail / Username"
-                  />
-                </div>
-                <div class="col-md-6">
-                  <label>Password</label>
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Password"
-                  />
-                </div>
                 <div class="col-md-12">
-                  <div class="custom-control custom-checkbox">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="newaccount"
-                    />
-                    <label class="custom-control-label" for="newaccount"
-                      >Keep me signed in</label
-                    >
+                  <div class="coupon">
+                    <input type="text" placeholder="Coupon Code" />
+                    <button>Apply Code</button>
                   </div>
                 </div>
                 <div class="col-md-12">
-                  <button class="btn">Submit</button>
+                  <div class="cart-summary">
+                    <div class="cart-content">
+                      <h1>Cart Summary</h1>
+
+                      <p>Sub Total<span>$99</span></p>
+                      <p>Shipping Cost<span>$1</span></p>
+                      <h2>Grand Total<span>$100</span></h2>
+                    </div>
+                    <div class="cart-btn">
+                      <button>Update Cart</button>
+                      <button>Checkout</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,7 +257,34 @@
         </div>
       </div>
     </div>
-    <!-- Login End -->
+    <!-- Cart End -->
+
+    <!-- Brand Start -->
+    <div class="brand">
+      <div class="container-fluid">
+        <div class="brand-slider">
+          <div class="brand-item">
+            <img src="{% static 'img/brand-1.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-2.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-3.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-4.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-5.png'%}" alt="" />
+          </div>
+          <div class="brand-item">
+            <img src="{% static 'img/brand-6.png'%}" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Brand End -->
 
     <!-- Footer Start -->
     <div class="footer">
