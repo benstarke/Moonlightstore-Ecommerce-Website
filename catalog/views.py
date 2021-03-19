@@ -6,7 +6,7 @@ from django.contrib.auth.models import User,auth
 from django.views.generic import  ListView,View,CreateView#,DetailView,TemplateView,
 from .models import *
 from django.db.models import Q
-from .forms import ContactForm,DeliveryForm
+from .forms import *
 
 """class HomeView(ListView):
 	model = Item
@@ -113,6 +113,9 @@ def delivery(request):
 def checkout(request):
 	return render(request,'catalog/checkout.html')
 
+def wishlist(request):
+	return render(request,'catalog/wishlist.html')
+
 
 def contact(request):
 	if request.method == 'POST':
@@ -169,50 +172,27 @@ def remove_from_cart(request,slug):
 		return redirect('product',slug=slug)
 
 def signup(request):
-    if request.method == "POST":
-        
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+    if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-    
-        user=User.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username,password=password1)
-        user.save()
-        
-        return redirect('login')
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, 'Username has been taken')
+                return redirect('signup')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request, 'Email already exists')
+                return redirect('signup')
+            else:
+                user = User.objects.create_user(username=username,email=email,password=password1)
+                user.save()
+                messages.success(request, 'Congrats for signing up!')
+                return redirect('signup')
+        else:
+            messages.info(request, 'password does not match')
+            return redirect('signup')
+
     else:
-        return render(request,'register.html') 
-
-# def signup(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         email = request.POST['email']
-#         password1 = request.POST['password1']
-#         password2 = request.POST['password2']
-#         if password1 == password2:
-#             if User.objects.filter(username=username).exists():
-#                 messages.info(request, 'Username has been taken')
-#                 return redirect('signup')
-#             elif User.objects.filter(email=email).exists():
-#                 messages.info(request, 'Email already exists')
-#                 return redirect('signup')
-#             else:
-#                 user = User.objects.create_user(username=username,email=email,password=password1)
-#                 user.save()
-#                 messages.success(request, 'Congrats for signing up!')
-#                 return redirect('signup')
-#         else:
-#             messages.info(request, 'password does not match')
-#             return redirect('signup')
-
-#     else:
-#         return render(request,'registration/login.html',{'title':'signup'})
-
-
-
-
-
-
+        return render(request,'registration/login.html',{'title':'signup'})
 

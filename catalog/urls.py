@@ -1,7 +1,7 @@
 
 from django.urls import path,include
 from .views import *
-from .import views
+from . import views
 
 
 urlpatterns = [
@@ -21,6 +21,7 @@ urlpatterns = [
 	path('signup/',views.signup,name='signup'),
 	path('accounts/',include('django.contrib.auth.urls')),
     #path('accounts/', include('allauth.urls')),
-	path('help',views.help,name='help'),
+	path('help', views.help, name='help'),
+	path('my-wishlist/',views.wishlist,name='my-wishlist'),
 	path('promotion',views.promotion,name='promotion'),
 ]
