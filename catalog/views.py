@@ -185,7 +185,7 @@ def signup(request):
                 messages.info(request, 'Email already exists')
                 return redirect('signup')
             else:
-                user = User.objects.create_user(username=username,email=email,password=password1)
+                user = User.objects.create_user(username=request.POST.get('username') , email=request.POST.get('email'),password=request.POST.get('password1'))
                 user.save()
                 messages.success(request, 'Congrats for signing up!')
                 return redirect('signup')

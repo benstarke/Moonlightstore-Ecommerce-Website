@@ -72,14 +72,14 @@
       </div>
 
       <div class="col-lg-6">
-        <form method="POST">
+        <form method="POST" action="{% url 'dashbord' %}">
           {% csrf_token %}
           <div class="login-form">
             <div class="row">
               <div class="col-md-6">
-                <label>E-mail / Username</label>
+                <label>E-mail</label>
                 <input
-                  name="username"
+                  name="email"
                   class="form-control"
                   type="text"
                   placeholder="E-mail / Username"
@@ -90,7 +90,7 @@
                 <input
                   name="password"
                   class="form-control"
-                  type="text"
+                  type="password"
                   placeholder="Password"
                 />
               </div>
