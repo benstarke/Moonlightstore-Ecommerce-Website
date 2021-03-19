@@ -75,9 +75,9 @@
                 class="nav-item nav-link active"
                 >Products</a
               >
-              <a href="product-detail.html" class="nav-item nav-link"
+              <!-- <a href="product-detail.html" class="nav-item nav-link"
                 >Product Detail</a
-              >
+              > -->
               <a href="cart.html" class="nav-item nav-link">Cart</a>
               <a href="checkout.html" class="nav-item nav-link">Checkout</a>
               {% if user.is_authenticated %}
@@ -145,6 +145,7 @@
             </div>
           </div>
           <div class="col-md-3">
+            {% if user.is_athenticated %}
             <div class="user">
               <a href="wishlist.html" class="btn wishlist">
                 <i class="fa fa-heart"></i>
@@ -155,6 +156,7 @@
                 <span>({{ request.user|cart_item_count }})</span>
               </a>
             </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -284,8 +286,8 @@
                   <li class="page-item">
                     <a class="disabled page-link">Previous</a>
                   </li>
-                  {% endif %} {% for i in items.paginator.page_range %} {% if
-                  items.number == i %}
+                  {% endif %} {% for i in items.paginator.page_range %}
+                   {% if items.number == i %}
                   <li class="page-item active">
                     <a class="page-link" href="#">{{ i }} </a>
                   </li>
@@ -293,7 +295,9 @@
                   <li class="page-item">
                     <a class="page-link" href="?page={{ i }}">{{ i }}</a>
                   </li>
-                  {% endif %} {% endfor %} {% if items.has_next %}
+                  {% endif %} 
+                  {% endfor %} 
+                  {% if items.has_next %}
                   <li class="page-item">
                     <a
                       class="page-link"
@@ -307,7 +311,8 @@
                   </li>
                   {% endif %}
                 </ul>
-                {% endif %} {% endif %}
+                {% endif %}
+                
               </nav>
             </div>
             <!-- Pagination Start -->
