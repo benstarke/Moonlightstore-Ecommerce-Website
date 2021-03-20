@@ -93,7 +93,7 @@
                   >More Pages</a
                 >
                 <div class="dropdown-menu">
-                  <a href="{% url 'my-wishlist' %}" class="dropdown-item">Wishlist</a>
+                  <a href="{% url 'wishlist' %}" class="dropdown-item">Wishlist</a>
                   {% if user.is_authenticated %}
                   <a href="{% url 'logout' %}" class="dropdown-item"
                   >Logout</a

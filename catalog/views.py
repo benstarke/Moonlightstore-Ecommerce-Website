@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -17,8 +18,13 @@ from .forms import *
 
 @login_required
 def add_to_wishlist(request,id):
-	item = get_object_or_404(Item)
-	return render(request, 'catalog/wishlist.html')
+	item = get_object_or_404(Item, id=id)
+	if item.users_wishlist.filter(id=request.user.id).exist():
+		item.user_wishlist.remove(request.user)
+	else:
+		item.user_wishlist.add(request.user)
+
+	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 	
 def home(request):
 	slides = slider.objects.all().order_by('id')[:7]
