@@ -7,6 +7,7 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust,ResizeToFit,SmartResize,Thumbnail
 
 
+
 CATEGORY_CHOICES = (
 	('Vegetables','Vegetables'),
 	('Electronics','Electronics'),
@@ -40,6 +41,8 @@ class Item(models.Model):
 	img = models.ImageField(upload_to='static/images', height_field=None, width_field=None, max_length=100,default='default.jpg')
 	image = ImageSpecField(processors=[ResizeToFill(572,314)], source='img',
             format='PNG', options={'quality': 100})
+	
+	users_wishlist = models.ManyToManyField(User,blank=True)
 
 	def __str__(self):
 		return self.title
