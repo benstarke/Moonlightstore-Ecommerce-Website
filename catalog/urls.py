@@ -22,6 +22,8 @@ urlpatterns = [
 	path('accounts/',include('django.contrib.auth.urls')),
     #path('accounts/', include('allauth.urls')),
 	path('help', views.help, name='help'),
-	path('my-wishlist/',views.wishlist,name='my-wishlist'),
-	path('promotion',views.promotion,name='promotion'),
+	path('wishlist/',views.wishlist,name='wishlist'),
+	path('promotion', views.promotion, name='promotion'),
+	#wish list
+	path('wishlist/add_to_wishlist/<int:id>',views.add_to_wishlist,name='add_to_wishlist'),
 ]

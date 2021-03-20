@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib import messages
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,Page, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User,auth
 from django.views.generic import  ListView,View,CreateView#,DetailView,TemplateView,
@@ -14,7 +15,11 @@ from .forms import *
 	template_name = 'catalog/home.html'
 	context_object_name = 'items'  """
 
-
+@login_required
+def add_to_wishlist(request,id):
+	item = get_object_or_404(Item)
+	return render(request, 'catalog/wishlist.html')
+	
 def home(request):
 	slides = slider.objects.all().order_by('id')[:7]
 	items_list = Item.objects.all()
