@@ -1,4 +1,5 @@
-{% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags %} {% block content %}
+{% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags
+%} {% block content %}
 <!-- Product List Start -->
 <div class="product-view">
   <div class="container-fluid">
@@ -74,7 +75,9 @@
                 </a>
                 <div class="product-action">
                   <a href="#"><i class="fa fa-cart-plus"></i></a>
-                  <a href="#"><i class="fa fa-heart"></i></a>
+                  <a href="{% url 'add_to_wishlist' item.id %}"
+                    ><i class="fa fa-heart"></i
+                  ></a>
                   <a href="{% url 'product' item.slug %}"
                     ><i class="fa fa-search"></i
                   ></a>
@@ -110,7 +113,8 @@
               <li class="page-item">
                 <a class="disabled page-link">Previous</a>
               </li>
-              {% endif %} {% for i in items.paginator.page_range %} {% if items.number == i %}
+              {% endif %} {% for i in items.paginator.page_range %}
+               {% if items.number == i %}
               <li class="page-item active">
                 <a class="page-link" href="#">{{ i }} </a>
               </li>

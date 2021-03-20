@@ -16,15 +16,7 @@ from .forms import *
 	template_name = 'catalog/home.html'
 	context_object_name = 'items'  """
 
-@login_required
-def add_to_wishlist(request,id):
-	item = get_object_or_404(Item, id=id)
-	if item.users_wishlist.filter(id=request.user.id).exist():
-		item.user_wishlist.remove(request.user)
-	else:
-		item.user_wishlist.add(request.user)
 
-	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 	
 def home(request):
 	slides = slider.objects.all().order_by('id')[:7]
@@ -122,10 +114,22 @@ def delivery(request):
 
 
 def checkout(request):
-	return render(request,'catalog/checkout.html')
-
+	return render(request, 'catalog/checkout.html')
+	
+@login_required
 def wishlist(request):
-	return render(request,'catalog/wishlist.html')
+	items = Item.objects.filter(users_wishlist=request.user)
+	return render(request, 'catalog/wishlist.html',{ "wishlist":items})
+
+@login_required
+def add_to_wishlist(request,id):
+	item = get_object_or_404(Item, id=id)
+	if item.users_wishlist.filter(id=request.user.id).exists():
+		item.users_wishlist.remove(request.user)
+	else:
+		item.users_wishlist.add(request.user)
+
+	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
 def contact(request):
