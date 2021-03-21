@@ -81,7 +81,7 @@
               <div class="product-image">
                 <a href="{% url 'product' item.slug %}">
                   <img
-                    src="{% static 'img/product-1.jpg'%}"
+                    src="{{item.img.url}}"
                     alt="Product Image"
                   />
                 </a>
@@ -90,9 +90,7 @@
                   <a href="{% url 'add_to_wishlist' item.id %}"
                     ><i class="fa fa-heart"></i
                   ></a>
-                  <a href="{% url 'product' item.slug %}"
-                    ><i class="fa fa-search"></i
-                  ></a>
+                  <a href="{% url 'product' item.slug %}">View</a>
                 </div>
               </div>
               <div class="product-price">
@@ -202,16 +200,16 @@
                 </div>
               </div>
               <div class="product-image">
-                <a href="product-detail.html">
+                <a href="{% url 'product' item.slug %}">
                   <img
-                    src="{% static 'img/product-10.jpg' %}"
+                    src="{{item.img.url}}"
                     alt="Product Image"
                   />
                 </a>
                 <div class="product-action">
-                  <a href="#"><i class="fa fa-cart-plus"></i></a>
-                  <a href="#"><i class="fa fa-heart"></i></a>
-                  <a href="#"><i class="fa fa-search"></i></a>
+                  <a href="{{item.get_add_to_cart_url}}"><i class="fa fa-cart-plus"></i></a>
+                  <a href="{% url 'add_to_wishlist' item.id %}"><i class="fa fa-heart"></i></a></br>
+                  <a href="{% url 'product' item.slug %}">View</a>
                 </div>
               </div>
               <div class="product-price">

@@ -1,4 +1,5 @@
-{% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags %} {% block content %}
+{% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags
+%} {% block content %}
 <!-- Main Slider Start -->
 <div class="header">
   <div class="container-fluid">
@@ -253,12 +254,16 @@
           </div>
           <div class="product-image">
             <a href="product-detail.html">
-              <img src="{% static 'img/product-1.jpg'%}" alt="Product Image" />
+              <img src="{{item.img.url}}" alt="Product Image" />
             </a>
             <div class="product-action">
-              <a href="#"><i class="fa fa-cart-plus"></i></a>
-              <a href="#"><i class="fa fa-heart"></i></a>
-              <a href="#"><i class="fa fa-search"></i></a>
+              <a href="{{item.get_add_to_cart_url}}"
+                ><i class="fa fa-cart-plus"></i
+              ></a>
+              <a href="{% url 'add_to_wishlist' item.id %}"
+                ><i class="fa fa-heart"></i
+              ></a>
+              <a href="{% url 'product' item.slug %}">View</a>
             </div>
           </div>
           <div class="product-price">
