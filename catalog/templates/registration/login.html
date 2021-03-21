@@ -33,7 +33,7 @@
                 <input
                   name="email"
                   class="form-control"
-                  type="text"
+                  type="email"
                   placeholder="E-mail"
                 />
               </div>
@@ -51,7 +51,7 @@
                 <input
                   name="password1"
                   class="form-control"
-                  type="text"
+                  type="password"
                   placeholder="Password"
                 />
               </div>
@@ -60,7 +60,7 @@
                 <input
                   name="password2"
                   class="form-control"
-                  type="text"
+                  type="password"
                   placeholder="Password"
                 />
               </div>
@@ -74,14 +74,14 @@
 
       <div class="col-lg-6">
         <h2>Sign In</h2>
-        <form method="POST" action="{% url 'dashbord' %}">
+        <form method="POST">
           {% csrf_token %}
           <div class="login-form">
             <div class="row">
               <div class="col-md-6">
-                <label>E-mail</label>
+                <label>Username</label>
                 <input
-                  name="email"
+                  name="username"
                   class="form-control"
                   type="text"
                   placeholder="E-mail / Username"

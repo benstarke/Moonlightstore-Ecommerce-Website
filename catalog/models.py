@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 #from phonenumber_field.modelfields import PhoneNumberField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, Adjust,ResizeToFit,SmartResize,Thumbnail
+from django.contrib.auth import get_user_model
 
 
 
@@ -51,7 +52,34 @@ class Item(models.Model):
 		return reverse( 'add_to_cart',kwargs={'slug':self.slug})
 
 	def get_remove_from_cart_url(self):
-		return reverse( 'remove_from_cart',kwargs={'slug':self.slug})
+		return reverse('remove_from_cart', kwargs={'slug': self.slug})
+
+	def review_count(self):
+		"""Return total reviews for product"""
+		count = self.reviews.aggregate(
+			count=models.Count('rating'))['count']
+		if count is None:
+			count = 0
+		return count
+
+class Review(models.Model):
+    """Users can leave product reviews"""
+    item = models.ForeignKey(
+        Item, on_delete=models.CASCADE, related_name='reviews')
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    rating = models.IntegerField(choices=RATING_CHOICES, default=3)
+    review = models.TextField()
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.review
 
 
 class OrderItem(models.Model):

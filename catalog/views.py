@@ -37,7 +37,7 @@ def home(request):
 
 def product_list(request):
 	slides = slider.objects.all().order_by('id')[:7]
-	items_list = Item.objects.all()
+	items_list = Item.objects.all().order_by('-price')
 	page = request.GET.get('page', 1)
 	paginator = Paginator(items_list, 9)
 	try:
@@ -190,28 +190,32 @@ def remove_from_cart(request,slug):
 		messages.info(request, "You don't have an active order!" )
 		return redirect('product',slug=slug)
 
+
 def signup(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-        if password1 == password2:
-            if User.objects.filter(username=username).exists():
-                messages.info(request, 'Username has been taken')
-                return redirect('signup')
-            elif User.objects.filter(email=email).exists():
-                messages.info(request, 'Email already exists')
-                return redirect('signup')
-            else:
-                user = User.objects.create_user(username=request.POST.get('username') , email=request.POST.get('email'),password=request.POST.get('password1'))
-                user.save()
-                messages.success(request, 'Congrats for signing up!')
-                return redirect('signup')
-        else:
-            messages.info(request, 'password does not match')
-            return redirect('signup')
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		email = request.POST.get('email')
+		first_name = request.POST.get('first_name')
+		last_name = request.POST.get('last_name')
+		password1 = request.POST.get('password1')
+		password2 = request.POST.get('password2')
+		if password1 == password2:
+			if User.objects.filter(username=username).exists():
+				messages.info(request, 'Username has been taken')
+				return redirect('signup')
+			elif User.objects.filter(email=email).exists():
+				messages.info(request, 'Email already exists')
+				return redirect('signup')
+			else:
+				user = User.objects.create_user(username=username, email=email, password=password1)
+				user.save()
+				messages.success(request, 'Congrats for signing up!')
+				return redirect('signup')
+		else:
+			messages.info(request, 'password does not match')
+			return redirect('signup')
+	else:
+		return render(request,'registration/login.html',{'title':'signup'})
 
-    else:
-        return render(request,'registration/login.html',{'title':'signup'})
 
+		
