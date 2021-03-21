@@ -92,7 +92,7 @@ def help(request):
 def promotion(request):
 	return render(request,'catalog/promotion.html')
 
-
+@login_required
 class OrderSummaryView(View):
 	def get(self,*args,**kwargs):
 		order = Order.objects.get(user=self.request.user,ordered=False)
