@@ -53,14 +53,6 @@ class Item(models.Model):
 	def get_remove_from_cart_url(self):
 		return reverse( 'remove_from_cart',kwargs={'slug':self.slug})
 
-class delivery(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	items = models.ForeignKey(Item, on_delete=models.CASCADE)
-	hostel = models.CharField(max_length=255)
-	phoneNumber = models.IntegerField()
-	delivered_at = models.CharField(max_length=255,null=False)
-
-
 
 class OrderItem(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -86,6 +78,13 @@ class OrderItem(models.Model):
 		if self.item.discount_price:
 			return self.get_total_item_discount_price()
 		return self.get_total_item_price()
+
+
+class delivery(models.Model):
+	user = models.ManyToManyField(User)
+	hostel = models.CharField(max_length=255)
+	phoneNumber = models.IntegerField()
+	delivered_at = models.CharField(max_length=255,null=False)
 
 
 class Order(models.Model):

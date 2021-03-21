@@ -1,0 +1,115 @@
+{% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags
+%} {% block content %}
+<!-- Product List Start -->
+<div class="product-view">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="product-view-top">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="product-short">
+                      <div class="dropdown">
+                        <select
+                          class="form-select form-select-lg mb-3"
+                          name="hostel"
+                          aria-label=".form-select-lg example"
+                        >
+                          <option selected>Your Residence</option>
+                          <option value="Everglades">Everglades</option>
+                          <option value="Runda IN">Runda IN</option>
+                          <option value="Runda Out">Runda Out</option>
+                          <option value="Victoria">Victorias</option>
+                          <option value="Kawanjiru">Kawanjiru</option>
+                          <option value="Sunrise">Sunrise</option>
+                          <option value="Marian">Marian</option>
+                          <option value="1 KM">1 KM</option>
+
+                          <option value="Others">Others</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="product-price-range">
+                      <div class="dropdown">
+                        <select
+                          class="form-select form-select-lg mb-3"
+                          name="delivered_at"
+                          aria-label=".form-select-lg example"
+                        >
+                          <option selected>Delivery Time</option>
+                          <option value="Morning 8-10a.m">
+                            Morning 8-10a.m
+                          </option>
+                          <option value="Afternoon 12-2p.m">
+                            Afternoon 12-2p.m
+                          </option>
+                          <option value="Evening 5-8p.m">Evening 5-8p.m</option>
+                          <option value="Anytime">Anytime</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <input
+                      type="number"
+                      name="phoneNumber"
+                      class="form-control mb-2 mr-sm-2"
+                      id="inlineFormInputName2MD"
+                      placeholder="Enter your phone number"
+                      required
+                    />
+                    <label class="sr-only" for="inlineFormInputName2MD"
+                      >Contact</label
+                    >
+                  </div>
+                  <!-- Sign in button -->
+                  <button
+                    class="btn btn-primary btn-rounded btn-block my-4 w-50 waves-light z-depth-0"
+                    type="submit"
+                  >
+                    Order Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Product List End -->
+
+<!-- Brand Start -->
+<div class="brand">
+  <div class="container-fluid">
+    <div class="brand-slider">
+      <div class="brand-item">
+        <img src="{% static 'img/brand-1.png' %}" alt="" />
+      </div>
+      <div class="brand-item">
+        <img src="{% static 'img/brand-2.png' %}" alt="" />
+      </div>
+      <div class="brand-item">
+        <img src="{% static 'img/brand-3.png' %}" alt="" />
+      </div>
+      <div class="brand-item">
+        <img src="{% static 'img/brand-4.png' %}" alt="" />
+      </div>
+      <div class="brand-item">
+        <img src="{% static 'img/brand-5.png' %}" alt="" />
+      </div>
+      <div class="brand-item">
+        <img src="{% static 'img/brand-6.png' %}" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Brand End -->
+{% endblock content %}

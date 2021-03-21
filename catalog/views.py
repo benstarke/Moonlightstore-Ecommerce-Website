@@ -9,6 +9,8 @@ from django.views.generic import  ListView,View,CreateView#,DetailView,TemplateV
 from .models import *
 from django.db.models import Q
 from .forms import *
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 """class HomeView(ListView):
 	model = Item
@@ -94,6 +96,7 @@ def promotion(request):
 
 
 class OrderSummaryView(View):
+	@method_decorator(login_required)
 	def get(self,*args,**kwargs):
 		order = Order.objects.get(user=self.request.user,ordered=False)
 		context = {
