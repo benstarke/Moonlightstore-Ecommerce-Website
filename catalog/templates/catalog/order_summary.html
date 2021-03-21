@@ -95,7 +95,109 @@
     </div>
   </div>
 </div>
-{% else %} None {% endif %}
+{% else %}
+<div>
+  <div class="cart-page">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="cart-page-inner">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+
+                <tbody class="align-middle">
+                  {% for order_item in order.items.all %}
+                  <tr>
+                    <td>
+                      <div class="img">
+                        <a href="#"
+                          ><img src="{{order_item.item.image.url}}" alt="Image"
+                        /></a>
+                        <p>{{order_item.item.title}}</p>
+                      </div>
+                    </td>
+
+                    {% if order_item.item.discount_price %}
+                    <td>{{order_item.item.discount_price}}</td>
+                    {% else %}
+                    <td>{{order_item.item.price}}</td>
+                    {% endif %}
+
+                    <td>
+                      <div class="qty">
+                        <button class="btn-minus">
+                          <a
+                            href="{{order_item.item.get_remove_from_cart_url}}"
+                          >
+                            <i class="fa fa-minus"></i
+                          ></a>
+                        </button>
+                        <input type="text" value="{{order_item.quantity}}" />
+                        <button class="btn-plus">
+                          <a href="{{order_item.item.get_add_to_cart_url}}">
+                            <i class="fa fa-plus"></i>
+                          </a>
+                        </button>
+                      </div>
+                    </td>
+
+                    <td>{{order_item.get_final_price}}</td>
+
+                    <td>
+                      <button type="submit">
+                        <a href="{{object.get_remove_from_cart_url}}"
+                          ><i class="fa fa-trash"></i>
+                        </a>
+                      </button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="cart-page-inner">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="coupon">
+                  <input type="text" placeholder="Coupon Code" />
+                  <button>Apply Code</button>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="cart-summary">
+                  <div class="cart-content">
+                    <h1>Cart Summary</h1>
+
+                    <p>Sub Total<span>Sh.{{order.get_total}}</span></p>
+                    <p>Shipping Cost<span>$20</span></p>
+                    <h2>Grand Total<span>${{order.get_final_total}}</span></h2>
+                  </div>
+                  <div class="cart-btn">
+                    <button>Update Cart</button>
+                    <button>Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 <!-- Cart End -->
 
 <!-- Brand Start -->

@@ -1,5 +1,13 @@
 {% extends 'catalog/base.html' %} {% load static %} {% load cart_template_tags
 %} {% block content %}
+
+{% if messages %}
+<div class="alert alert-warning text-center" alert={{message.tags}} role="alert">
+    {% for message in messages %}
+      {{message|safe}} - <a href="{% url 'wishlist' %}" >View Your Wishlist <i class="fa fa-heart"></i></a>
+    {% endfor %}
+</div>
+{% endif %}
 <!-- Product List Start -->
 <div class="product-view">
   <div class="container-fluid">
@@ -53,8 +61,12 @@
               </div>
             </div>
           </div>
-          {% comment %} Products {% endcomment %} {% for item in items %}
+          {% comment %} Products {% endcomment %}
+         
+           {% for item in items %}
+           
           <div class="col-md-4">
+          
             <div class="product-item">
               <div class="product-title">
                 <a href="{% url 'product' item.slug %}">{{item.title}}</a>
@@ -74,7 +86,7 @@
                   />
                 </a>
                 <div class="product-action">
-                  <a href="#"><i class="fa fa-cart-plus"></i></a>
+                  <a href="{{item.get_add_to_cart_url}}"><i class="fa fa-cart-plus"></i></a>
                   <a href="{% url 'add_to_wishlist' item.id %}"
                     ><i class="fa fa-heart"></i
                   ></a>

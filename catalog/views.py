@@ -92,7 +92,7 @@ def help(request):
 def promotion(request):
 	return render(request,'catalog/promotion.html')
 
-@login_required
+
 class OrderSummaryView(View):
 	def get(self,*args,**kwargs):
 		order = Order.objects.get(user=self.request.user,ordered=False)
@@ -126,9 +126,10 @@ def add_to_wishlist(request,id):
 	item = get_object_or_404(Item, id=id)
 	if item.users_wishlist.filter(id=request.user.id).exists():
 		item.users_wishlist.remove(request.user)
+		messages.success(request,"Removed " +item.title+ " from Wishlist.")
 	else:
 		item.users_wishlist.add(request.user)
-
+		messages.success(request,"Added " +item.title+ " to Wishlist.")
 	return HttpResponseRedirect(request.META["HTTP_REFERER"])
 
 
@@ -143,7 +144,7 @@ def contact(request):
 	return render(request,'catalog/contact.html',{'form': form})
 
 
-
+@login_required
 def add_to_cart(request,slug):
 	item = get_object_or_404(Item, slug=slug)
 	order_item,created = OrderItem.objects.get_or_create(item=item,user=request.user,ordered=False)

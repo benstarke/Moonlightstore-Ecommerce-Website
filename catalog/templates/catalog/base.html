@@ -175,6 +175,13 @@
     <!-- Bottom Bar Start -->
     
     <!-- Bottom Bar End -->
+    {% if messages %}
+<div class="alert alert-warning text-center" alert={{message.tags}} role="alert">
+    {% for message in messages %}
+      {{message|safe}} 
+    {% endfor %}
+</div>
+{% endif %}
     {% block content %} {% endblock content %}
     <!-- Footer Start -->
     <div class="footer">
