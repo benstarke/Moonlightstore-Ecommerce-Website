@@ -218,4 +218,5 @@ def signup(request):
 		return render(request,'registration/login.html',{'title':'signup'})
 
 
+
 		

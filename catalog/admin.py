@@ -2,6 +2,17 @@ from django.contrib import admin
 from django.contrib.auth.models import User,Group
 from .models import *
 
+from django.contrib import admin
+
+from .models import Item, Review
+
+
+class ReviewInline(admin.TabularInline):
+    """Tabular Inline View for Product Reviews"""
+    model = Review
+
+
+
 class ItemAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug':('title',)}
 	list_display = [
@@ -9,6 +20,10 @@ class ItemAdmin(admin.ModelAdmin):
 		'price',
 		'discount_price'
 	]
+	list_filter = ('title', 'category',)
+	inlines = [
+		ReviewInline,
+		]
 
 
 
