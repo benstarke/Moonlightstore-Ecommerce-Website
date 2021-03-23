@@ -18,11 +18,11 @@ urlpatterns = [
 	path('delivery/',delivery, name='delivery'),
 	path('remove_from_cart/<slug>/',remove_from_cart,name='remove_from_cart'),
 	path('search/', SearchResultsView.as_view(), name='search_results'),
-	path('signup/',views.signup,name='signup'),
-	path('accounts/',include('django.contrib.auth.urls')),
-    #path('accounts/', include('allauth.urls')),
+	# path('signup/',views.signup,name='signup'),
+	path('register/',views.register,name='register'),
+	path('login/',views.logins,name='login'),
+	#path('accounts/',include('django.contrib.auth.urls')),
 	path('help', views.help, name='help'),
-	
 	path('promotion', views.promotion, name='promotion'),
 	#wish list
 	path('wishlist/',views.wishlist,name='wishlist'),

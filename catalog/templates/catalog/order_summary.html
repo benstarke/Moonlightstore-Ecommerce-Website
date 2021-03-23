@@ -56,7 +56,9 @@
                   <td>{{order_item.get_final_price}}</td>
 
                   <td>
-                    <button><i class="fa fa-trash"></i></button>
+                    <button><a href="{{order_item.item.get_remove_from_cart_url}}">
+                      <i class="fa fa-trash"></i
+                    ></a></button>
                   </td>
                 </tr>
                 {% endfor %}
